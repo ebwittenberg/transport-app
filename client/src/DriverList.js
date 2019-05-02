@@ -10,11 +10,6 @@ class DriverList extends React.Component {
         }
     }
 
-    componentDidMount() {
-        // call function that gets all drivers from backend
-        this.props.onLoad();
-    }
-
     render() {
         console.log(this.state.drivers);
         return (

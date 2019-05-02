@@ -17,6 +17,11 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    // call function that gets all drivers from backend
+    this._getDrivers();
+  }
+
   render() {
     return (
       <div>
@@ -40,7 +45,15 @@ class App extends React.Component {
         />
 
         <Route path="/jobs" component={JobList} />
-        <Route path="/jobs/assign/:id" component={AssignJob} />
+
+        <Route path="/jobs/assign/:id"
+          render={(props) => (
+            <AssignJob
+              {...props}
+              drivers={this.state.drivers}
+            />
+          )}
+        />
       </div>
     );
   }
