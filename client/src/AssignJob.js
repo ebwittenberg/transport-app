@@ -43,10 +43,8 @@ class AssignJob extends React.Component {
     }
 
     _submitForm = async (driverID, jobID) => {
-        console.log(driverID);
         // send post request to backend, which will update the the driver's assigned_job value
         const response = await axios.post(`http://localhost:5000/jobs/assign/${driverID}/${jobID}`);
-        console.log(response);
         this.props.updateDriverList();
 
 

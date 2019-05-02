@@ -14,6 +14,7 @@ async function assignJob(req, res) {
     console.log(req.params);
 
     await Driver.assignJobToDriver(req.params.driverID, req.params.jobID);
+    await Job.markAssigned(req.params.jobID);
 
     res.send(`Job #${req.params.jobID} has been assigned to driver ${req.params.driverID}`);
 
