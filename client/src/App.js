@@ -89,6 +89,10 @@ class App extends React.Component {
 
   }
 
+  _getAssignedJobs = async () => {
+    const response = await axios.get('http://localhost:5000/jobs/assigned')
+  }
+
 }
 
 export default App;

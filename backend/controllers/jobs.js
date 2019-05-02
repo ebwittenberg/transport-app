@@ -1,11 +1,19 @@
 const Job = require('../models/jobs');
 const Driver = require('../models/drivers');
 
-async function getAllJobs(req, res) {
+async function getUnassignedJobs(req, res) {
 
-    const arrayOfJobs = await Job.getAllJobs();
+    const arrayOfJobs = await Job.getUnassignedJobs();
 
     res.send(arrayOfJobs);
+
+}
+
+async function getJobById(req, res) {
+
+    const aJob = await Job.getJobById(req.params.id);
+
+    res.send(aJob);
 
 }
 
@@ -20,4 +28,4 @@ async function assignJob(req, res) {
 
 }
 
-module.exports = {getAllJobs, assignJob};
+module.exports = {getUnassignedJobs, getJobById, assignJob};

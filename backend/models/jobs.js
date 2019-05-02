@@ -9,7 +9,7 @@ class Job {
         this.assigned = assigned;
     }
 
-    static getAllJobs() {
+    static getUnassignedJobs() {
         return db.any(`
         select * from jobs
         WHERE assigned='FALSE'
@@ -17,6 +17,14 @@ class Job {
         .then(allJobs => {
             return allJobs.map(job => new Job(job.id, job.delivery_address, job.driving_distance, job.assigned));
         })
+    }
+
+    static getJobById(id) {
+        return db.one(`
+        select * from jobs
+        WHERE id=${id}
+        `)
+        .then(job => new Job(job.id, job.delivery_address, job.driving_distance, job.assigned))
     }
 
     static markAssigned(jobID) {

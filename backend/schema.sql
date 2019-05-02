@@ -3,7 +3,8 @@ create table jobs (
     id serial primary key,
     delivery_address varchar(500),
     driving_distance integer,
-    assigned boolean
+    assigned boolean,
+    completed boolean
 );
 
 
