@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Job from './Job';
 
-class JobList extends React.Component {
+class UnassignedList extends React.Component {
 
     render() {
         return (
@@ -29,4 +29,4 @@ class JobList extends React.Component {
 
 
 
-export default JobList;
+export default UnassignedList;

@@ -5,7 +5,7 @@ import './App.css';
 
 import Home from './Home';
 import DriverList from './DriverList';
-import JobList from './JobList';
+import UnassignedList from './UnassignedList';
 import AssignJob from './AssignJob';
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
   componentDidMount() {
     // call function that gets all drivers from backend
     this._getDrivers();
-    this._getAllJobs();
+    this._getUnassignedJobs();
   }
 
   componentDidUpdate() {
@@ -33,8 +33,9 @@ class App extends React.Component {
       <div>
         <div className="nav">
           <p><Link to="/">Home</Link></p>
+          <p><Link to="/assigned">Active Jobs</Link></p>
+          <p><Link to="/jobs">Unassigned Jobs</Link></p>
           <p><Link to="/drivers">Drivers</Link></p>
-          <p><Link to="/jobs">Jobs</Link></p>
         </div>
   
         <Route exact path="/" component={Home} />
@@ -50,7 +51,7 @@ class App extends React.Component {
         />
 
         <Route path="/jobs" render={(props) => (
-          <JobList 
+          <UnassignedList 
             {...props}
             jobs={this.state.jobs}
           />
@@ -63,7 +64,7 @@ class App extends React.Component {
               {...props}
               drivers={this.state.drivers}
               updateDriverList={this._getDrivers}
-              getJobs={this._getAllJobs}
+              getJobs={this._getUnassignedJobs}
             />
           )}
         />
@@ -81,7 +82,7 @@ class App extends React.Component {
 
   }
 
-  _getAllJobs = async () => {
+  _getUnassignedJobs = async () => {
     const response = await axios.get('http://localhost:5000/jobs');
     this.setState({
         jobs: response.data

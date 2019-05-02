@@ -34,7 +34,7 @@ class AssignJob extends React.Component {
                     >
                         <option disabled selected>Select a driver</option>
                         {
-                            this.props.drivers.map(driver => <option value={driver.id}>{driver.last_name}</option>)
+                            this.props.drivers.filter(driver => !driver.assigned_job).map(driver => <option value={driver.id}>{driver.last_name}</option>)
                         }
                     </select>
 
