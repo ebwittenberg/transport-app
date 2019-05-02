@@ -2,11 +2,11 @@ const db = require('./conn');
 
 class Job {
 
-    constructor(id, delivery_address, driving_distance, assigned_driver) {
+    constructor(id, delivery_address, driving_distance, assigned) {
         this.id = id;
         this.delivery_address = delivery_address;
         this.driving_distance = driving_distance;
-        this.assigned_driver = assigned_driver;
+        this.assigned = assigned;
     }
 
     static getAllJobs() {
@@ -15,7 +15,7 @@ class Job {
         WHERE assigned='FALSE'
         `)
         .then(allJobs => {
-            return allJobs.map(job => new Job(job.id, job.delivery_address, job.driving_distance, job.assigned_driver));
+            return allJobs.map(job => new Job(job.id, job.delivery_address, job.driving_distance, job.assigned));
         })
     }
 

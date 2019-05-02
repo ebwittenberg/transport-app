@@ -19,7 +19,7 @@ class AssignJob extends React.Component {
                 <h3>Select driver to assign Job #{this.props.match.params.id}</h3>
                 
                 <form
-                    action={`/jobs/assign/${this.props.match.params.id}`}
+                    action={`/jobs/unassigned/${this.props.match.params.id}`}
                     method="POST"
                     id="assignform"
                     onSubmit={(e) => {
@@ -42,7 +42,7 @@ class AssignJob extends React.Component {
                 </form>
 
                 {
-                    this.state.submitted ? <Redirect to="/jobs" /> : null
+                    this.state.submitted ? <Redirect to="/jobs/unassigned" /> : null
                 }
             </div>
         )

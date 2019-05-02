@@ -14,16 +14,18 @@ class DriverList extends React.Component {
         console.log(this.state.drivers);
         return (
             <div>
-                <h2>Drivers</h2>
+                <h2>Active Jobs</h2>
 
                 <table>
                     <tbody>
                         <tr>
-                            <th>Driver Name</th>
                             <th>Assigned Job</th>
+                            <th>Driver Name</th>
                         </tr>
                         {
-                            this.props.drivers ? this.props.drivers.map(d => <Driver data={d}/>) : null
+                            this.props.drivers 
+                            ? this.props.drivers.filter(driver => driver.assigned_job).map(d => <Driver data={d}/>) 
+                            : null
                         }
                     </tbody>
                 </table>

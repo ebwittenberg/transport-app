@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
     this.state={
       drivers: null,
-      jobs: null
+      unassignedJobs: null
     }
   }
 
@@ -33,9 +33,8 @@ class App extends React.Component {
       <div>
         <div className="nav">
           <p><Link to="/">Home</Link></p>
-          <p><Link to="/jobs/assigned">Active Jobs</Link></p>
+          <p><Link to="/drivers">Active Jobs</Link></p>
           <p><Link to="/jobs/unassigned">Unassigned Jobs</Link></p>
-          <p><Link to="/drivers">Drivers</Link></p>
         </div>
   
         <Route exact path="/" component={Home} />
@@ -53,12 +52,12 @@ class App extends React.Component {
         <Route path="/jobs/unassigned" render={(props) => (
           <UnassignedList 
             {...props}
-            jobs={this.state.jobs}
+            jobs={this.state.unassignedJobs}
           />
         )}
         />
 
-        <Route path="/jobs/assign/:id"
+        <Route path="/jobs/unassigned/:id"
           render={(props) => (
             <AssignJob
               {...props}
@@ -85,7 +84,7 @@ class App extends React.Component {
   _getUnassignedJobs = async () => {
     const response = await axios.get('http://localhost:5000/jobs/unassigned');
     this.setState({
-        jobs: response.data
+        unassignedJobs: response.data
     })
 
   }

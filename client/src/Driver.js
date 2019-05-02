@@ -4,8 +4,8 @@ function Driver({data}) {
 
     return (
         <tr>
-            <td>{data.last_name}</td>
             <td>{data.assigned_job ? data.assigned_job : 'none'}</td>
+            <td>{data.last_name}</td>
 
         </tr>
     )

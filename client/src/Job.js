@@ -10,7 +10,9 @@ function Job({data}) {
             <td>{data.id}</td>
             <td>{data.delivery_address}</td>
             <td>{data.driving_distance}</td>
-            <td><button><Link to={`/jobs/assign/${data.id}`}>Assign to Driver</Link></button></td>
+            <td>
+                {!data.assigned ? <button><Link to={`/jobs/unassigned/${data.id}`}>Assign to Driver</Link></button> : null}
+            </td>
         </tr>
 
     )
