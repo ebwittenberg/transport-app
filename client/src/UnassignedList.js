@@ -1,10 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import Job from './Job';
 
-class UnassignedList extends React.Component {
 
-    render() {
+function UnassignedList({jobs}) {
         return (
 
             <table>
@@ -16,7 +14,7 @@ class UnassignedList extends React.Component {
                         <th>Assign Job</th>
                     </tr>
                     {
-                        this.props.jobs ? this.props.jobs.map(j => <Job data={j}/>) : null
+                        jobs ? jobs.map(j => <Job data={j}/>) : null
                     }
                 </tbody>
             </table>
@@ -24,8 +22,6 @@ class UnassignedList extends React.Component {
         )
     }
 
-
-}
 
 
 

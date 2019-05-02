@@ -6,7 +6,7 @@ const {
 
 const jobsRouter = express.Router();
 
-jobsRouter.get('/', getAllJobs);
+jobsRouter.get('/unassigned', getAllJobs);
 jobsRouter.post('/assign/:driverID/:jobID', assignJob)
 
 module.exports = jobsRouter;
