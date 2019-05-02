@@ -12,6 +12,7 @@ class Job {
     static getAllJobs() {
         return db.any(`
         select * from jobs
+        WHERE assigned='FALSE'
         `)
         .then(allJobs => {
             return allJobs.map(job => new Job(job.id, job.delivery_address, job.driving_distance, job.assigned_driver));

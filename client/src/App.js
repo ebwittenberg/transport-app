@@ -13,13 +13,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      drivers: null
+      drivers: null,
+      jobs: null
     }
   }
 
   componentDidMount() {
     // call function that gets all drivers from backend
     this._getDrivers();
+    this._getAllJobs();
   }
 
   componentDidUpdate() {
@@ -36,7 +38,6 @@ class App extends React.Component {
         </div>
   
         <Route exact path="/" component={Home} />
-        {/* <Route path="/drivers" component={DriverList} /> */}
 
         <Route path="/drivers"
           render={(props) => (
@@ -48,7 +49,13 @@ class App extends React.Component {
           )}
         />
 
-        <Route path="/jobs" component={JobList} />
+        <Route path="/jobs" render={(props) => (
+          <JobList 
+            {...props}
+            jobs={this.state.jobs}
+          />
+        )}
+        />
 
         <Route path="/jobs/assign/:id"
           render={(props) => (
@@ -56,6 +63,7 @@ class App extends React.Component {
               {...props}
               drivers={this.state.drivers}
               updateDriverList={this._getDrivers}
+              getJobs={this._getAllJobs}
             />
           )}
         />
@@ -72,6 +80,14 @@ class App extends React.Component {
     })
 
   }
+
+  _getAllJobs = async () => {
+    const response = await axios.get('http://localhost:5000/jobs');
+    this.setState({
+        jobs: response.data
+    })
+
+}
 
 }
 

@@ -1,12 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 class AssignJob extends React.Component {
 
     constructor(props) {
         super(props);
         this.state={
-            selectedDriverID: null
+            selectedDriverID: null,
+            submitted: false
         }
     }
 
@@ -38,6 +40,10 @@ class AssignJob extends React.Component {
 
                     <button type="submit">Submit</button>
                 </form>
+
+                {
+                    this.state.submitted ? <Redirect to="/jobs" /> : null
+                }
             </div>
         )
     }
@@ -46,7 +52,10 @@ class AssignJob extends React.Component {
         // send post request to backend, which will update the the driver's assigned_job value
         const response = await axios.post(`http://localhost:5000/jobs/assign/${driverID}/${jobID}`);
         this.props.updateDriverList();
-
+        this.setState({
+            submitted: true
+        }, this.props.getJobs);
+        
 
 
     }
