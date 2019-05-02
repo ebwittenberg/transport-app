@@ -1,8 +1,12 @@
 const express = require('express');
-const jobsController = require('../controllers/jobs');
+const {
+    getAllJobs,
+    assignJob
+} = require('../controllers/jobs');
 
 const jobsRouter = express.Router();
 
-jobsRouter.get('/', jobsController);
+jobsRouter.get('/', getAllJobs);
+jobsRouter.post('/assign/:driverID/:jobID', assignJob)
 
 module.exports = jobsRouter;

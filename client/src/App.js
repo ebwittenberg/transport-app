@@ -22,6 +22,10 @@ class App extends React.Component {
     this._getDrivers();
   }
 
+  componentDidUpdate() {
+    console.log('App: componentDidUpdate');
+  }
+
   render() {
     return (
       <div>
@@ -51,6 +55,7 @@ class App extends React.Component {
             <AssignJob
               {...props}
               drivers={this.state.drivers}
+              updateDriverList={this._getDrivers}
             />
           )}
         />
@@ -60,6 +65,7 @@ class App extends React.Component {
 
   _getDrivers = async () => {
     // get drivers from the backend, save in state
+    console.log('App: _getDrivers got called');
     const response = await axios.get('http://localhost:5000/drivers');
     this.setState({
         drivers: response.data

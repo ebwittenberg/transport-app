@@ -1,15 +1,17 @@
 import React from 'react';
+import axios from 'axios';
 
 class AssignJob extends React.Component {
 
     constructor(props) {
         super(props);
         this.state={
-            selectedDriver: ''
+            selectedDriverID: null
         }
     }
 
     render() {
+        console.log(this.props.drivers)
         return (
             <div>
                 <h3>Select driver to assign Job #{this.props.match.params.id}</h3>
@@ -30,7 +32,7 @@ class AssignJob extends React.Component {
                     >
                         <option disabled selected>Select a driver</option>
                         {
-                            this.props.drivers.map(driver => <option value={driver.last_name}>{driver.last_name}</option>)
+                            this.props.drivers.map(driver => <option value={driver.id}>{driver.last_name}</option>)
                         }
                     </select>
 
@@ -40,10 +42,13 @@ class AssignJob extends React.Component {
         )
     }
 
-    _submitForm = (driver, jobID) => {
+    _submitForm = async (driverID, jobID) => {
+        console.log(driverID);
+        // send post request to backend, which will update the the driver's assigned_job value
+        const response = await axios.post(`http://localhost:5000/jobs/assign/${driverID}/${jobID}`);
+        console.log(response);
+        this.props.updateDriverList();
 
-        console.log(driver);
-        console.log(jobID);
 
 
     }

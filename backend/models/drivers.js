@@ -15,6 +15,16 @@ class Driver {
         `)
     }
 
+    static assignJobToDriver(driverID, jobID) {
+        return db.result(`
+        UPDATE drivers
+        SET assigned_job=${jobID}
+        WHERE id=${driverID} 
+        `)
+
+
+    }
+
 }
 
 module.exports = Driver;
