@@ -4,10 +4,11 @@ import './App.css';
 
 import Home from './Home';
 import DriverList from './DriverList';
+import JobList from './JobList';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <div className="nav">
         <p><Link to="/">Home</Link></p>
         <p><Link to="/drivers">Drivers</Link></p>
@@ -16,6 +17,7 @@ function App() {
 
       <Route exact path="/" component={Home} />
       <Route path="/drivers" component={DriverList} />
+      <Route path="/jobs" component={JobList} />
     </div>
   );
 }

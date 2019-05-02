@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // baked into express already, can decode form data and put in req.body
 app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Home page')
-})
+// app.get('/', (req, res) => {
+//     res.send('Home page')
+// })
 
-app.get('/drivers', driverRouter);
+app.use('/drivers', driverRouter);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
