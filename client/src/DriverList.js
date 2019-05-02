@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Driver from './Driver';
 
 class DriverList extends React.Component {
@@ -13,7 +12,7 @@ class DriverList extends React.Component {
 
     componentDidMount() {
         // call function that gets all drivers from backend
-        this._getDrivers();
+        this.props.onLoad();
     }
 
     render() {
@@ -29,7 +28,7 @@ class DriverList extends React.Component {
                             <th>Assigned Job</th>
                         </tr>
                         {
-                            this.state.drivers ? this.state.drivers.map(d => <Driver data={d}/>) : null
+                            this.props.drivers ? this.props.drivers.map(d => <Driver data={d}/>) : null
                         }
                     </tbody>
                 </table>
@@ -37,15 +36,6 @@ class DriverList extends React.Component {
             </div>
 
         )
-    }
-
-    _getDrivers = async () => {
-        // get drivers from the backend, save in state
-        const response = await axios.get('http://localhost:5000/drivers');
-        this.setState({
-            drivers: response.data
-        })
-
     }
 
 
