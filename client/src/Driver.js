@@ -56,7 +56,7 @@ class Driver extends React.Component {
     _markComplete = async () => {
         await axios({
             method: 'post',
-            url: 'http://localhost:5000/jobs/complete',
+            url: '/jobs/complete',
             data: qs.stringify(
                 {
                     message: this.props.data

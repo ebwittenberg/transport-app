@@ -85,7 +85,7 @@ class App extends React.Component {
 
   _getDrivers = async () => {
     // get drivers from the backend, save in state
-    const response = await axios.get('http://localhost:5000/drivers');
+    const response = await axios.get('/drivers');
     console.log(response);
     this.setState({
         allDrivers: response.data
@@ -95,7 +95,7 @@ class App extends React.Component {
 
   _getActiveDrivers = async () => {
     console.log('App: _getActiveDrivers IS BEING CALLED WOO')
-    const response = await axios.get('http://localhost:5000/drivers/active')
+    const response = await axios.get('/drivers/active')
     this.setState({
       activeDrivers: response.data
     })
@@ -103,7 +103,7 @@ class App extends React.Component {
   }
 
   _getUnassignedJobs = async () => {
-    const response = await axios.get('http://localhost:5000/jobs/unassigned');
+    const response = await axios.get('/jobs/unassigned');
     this.setState({
         unassignedJobs: response.data
     })
@@ -112,7 +112,7 @@ class App extends React.Component {
 
   _getCompletedJobs = async () => {
     console.log('_getCompletedJobs in App')
-    const response = await axios.get('http://localhost:5000/jobs/completed');
+    const response = await axios.get('/jobs/completed');
     console.log(response);
     this.setState({
       completedJobs: response.data

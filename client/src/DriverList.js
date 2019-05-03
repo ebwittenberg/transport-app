@@ -30,7 +30,7 @@ class DriverList extends React.Component {
                         </tr>
                         {
                             this.props.drivers 
-                            ? this.props.drivers.map(d => <Driver data={d} onClick={this._getJobInfo} getDrivers={this.props.onLoad} completed={this.props.completed}/>) 
+                            ? this.props.drivers.map(d => <Driver key={d.id} data={d} onClick={this._getJobInfo} getDrivers={this.props.onLoad} completed={this.props.completed}/>) 
                             : null
                         }
                     </tbody>
@@ -76,7 +76,7 @@ class DriverList extends React.Component {
         console.log(id);
 
         // need to pass ID along in an axios post request to the backend, then print a Job component to the Active Jobs page
-        const response = await axios.get(`http://localhost:5000/jobs/assigned/${id}`);
+        const response = await axios.get(`/jobs/assigned/${id}`);
         console.log(response);
         this.setState({
             job: response.data

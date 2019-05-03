@@ -14,7 +14,7 @@ function UnassignedList({jobs}) {
                         <th>Assign Job</th>
                     </tr>
                     {
-                        jobs ? jobs.map(j => <Job data={j}/>) : null
+                        jobs ? jobs.map(j => <Job key={j.id} data={j}/>) : null
                     }
                 </tbody>
             </table>

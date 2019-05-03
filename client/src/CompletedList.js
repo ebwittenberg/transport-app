@@ -7,7 +7,6 @@ class CompletedList extends React.Component {
     }
 
     render() {
-        console.log(this.props.completed);
         return (
 
             <table>
@@ -19,7 +18,7 @@ class CompletedList extends React.Component {
                     </tr>
                     {
                         this.props.completed 
-                        ? this.props.completed.map(j => <Job data={j} />)
+                        ? this.props.completed.map(j => <Job key={j.id} data={j} />)
                         : null
                     }
                 </tbody>
