@@ -14,17 +14,15 @@ class DriverList extends React.Component {
     }
 
     render() {
-        console.log('THIS IS DRIVER LIST RE-RENDERING');
-        console.log(this.props.drivers);
-        console.log(this.state.drivers);
         return (
             <div>
                 <h2>Active Jobs</h2>
+                <h3>Click on a job ID to see more info</h3>
 
                 <table>
                     <tbody>
                         <tr>
-                            <th>Assigned Job</th>
+                            <th>Assigned Job ID</th>
                             <th>Driver Name</th>
                             <th>Mark Complete</th>
                         </tr>

@@ -30,7 +30,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <div className="nav">
           <p><Link to="/">Home</Link></p>
           <p><Link to="/drivers">Active Jobs</Link></p>
@@ -84,24 +84,22 @@ class App extends React.Component {
   }
 
   _getDrivers = async () => {
-    // get drivers from the backend, save in state
+    // get all drivers from the backend, save in state
     const response = await axios.get('/drivers');
-    console.log(response);
     this.setState({
         allDrivers: response.data
     })
 
   }
-
+  // gets just those drivers that have a job assigned to them
   _getActiveDrivers = async () => {
-    console.log('App: _getActiveDrivers IS BEING CALLED WOO')
     const response = await axios.get('/drivers/active')
     this.setState({
       activeDrivers: response.data
     })
 
   }
-
+  // gets jobs that are not assigned
   _getUnassignedJobs = async () => {
     const response = await axios.get('/jobs/unassigned');
     this.setState({
@@ -109,11 +107,9 @@ class App extends React.Component {
     })
 
   }
-
+  // gets jobs that are completed
   _getCompletedJobs = async () => {
-    console.log('_getCompletedJobs in App')
     const response = await axios.get('/jobs/completed');
-    console.log(response);
     this.setState({
       completedJobs: response.data
     })

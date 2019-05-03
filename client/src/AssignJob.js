@@ -8,12 +8,16 @@ class AssignJob extends React.Component {
         super(props);
         this.state={
             selectedDriverID: null,
-            submitted: false
+            submitted: false,
+            drivers: null
         }
     }
 
+    componentDidMount() {
+        this.props.updateAllDrivers();
+    }
+
     render() {
-        console.log(this.props.drivers)
         return (
             <div>
                 <h3>Select driver to assign Job #{this.props.match.params.id}</h3>

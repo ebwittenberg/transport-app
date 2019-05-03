@@ -1,14 +1,12 @@
 import React from 'react';
 import Job from './Job';
 
-class CompletedList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+function CompletedList({completed}) {
 
-    render() {
-        return (
+    return (
+        <div>
 
+            <h2>Completed Jobs</h2>
             <table>
                 <tbody>
                     <tr>
@@ -17,8 +15,8 @@ class CompletedList extends React.Component {
                         <th>Driving Distance</th>
                     </tr>
                     {
-                        this.props.completed 
-                        ? this.props.completed.map(j => <Job key={j.id} data={j} />)
+                        completed 
+                        ? completed.map(j => <Job key={j.id} data={j} />)
                         : null
                     }
                 </tbody>
@@ -27,12 +25,10 @@ class CompletedList extends React.Component {
 
             </table>
 
-        )
 
+        </div>
 
-    }
-
-
+    )
 }
 
 
