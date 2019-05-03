@@ -75,6 +75,7 @@ class App extends React.Component {
             <CompletedList 
               {...props}
               completed={this.state.completedJobs}
+              getCompleted={this._getCompletedJobs}
             />
           )}
         />
