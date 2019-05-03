@@ -56,8 +56,6 @@ class AssignJob extends React.Component {
         this.setState({
             submitted: true
         }, this.props.getJobs);
-        
-
 
     }
 
