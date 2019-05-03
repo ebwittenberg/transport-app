@@ -28,4 +28,13 @@ async function assignJob(req, res) {
 
 }
 
-module.exports = {getUnassignedJobs, getJobById, assignJob};
+async function markComplete(req, res) {
+
+    await Job.markComplete(parseInt(req.body.message.assigned_job))
+    await Driver.unAssignJob(parseInt(req.body.message.id))
+
+    res.send('Job completed');
+
+}
+
+module.exports = {getUnassignedJobs, getJobById, assignJob, markComplete};

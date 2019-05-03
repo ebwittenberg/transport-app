@@ -35,6 +35,14 @@ class Job {
         `)
     }
 
+    static markComplete(jobID) {
+        return db.result(`
+        UPDATE jobs
+        set completed='TRUE'
+        WHERE id=${jobID}
+        `)
+    }
+
 
 }
 

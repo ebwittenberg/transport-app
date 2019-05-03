@@ -13,8 +13,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      drivers: null,
-      unassignedJobs: null
+      allDrivers: null,
+      unassignedJobs: null,
+      activeDrivers: null
     }
   }
 
@@ -22,10 +23,7 @@ class App extends React.Component {
     // call function that gets all drivers from backend
     this._getDrivers();
     this._getUnassignedJobs();
-  }
-
-  componentDidUpdate() {
-    console.log('App: componentDidUpdate');
+    this._getActiveDrivers();
   }
 
   render() {
@@ -43,8 +41,8 @@ class App extends React.Component {
           render={(props) => (
             <DriverList
               {...props}
-              onLoad={this._getDrivers}
-              drivers={this.state.drivers}
+              onLoad={this._getActiveDrivers}
+              drivers={this.state.activeDrivers}
             />
           )}
         />
@@ -62,7 +60,7 @@ class App extends React.Component {
             <AssignJob
               {...props}
               drivers={this.state.drivers}
-              updateDriverList={this._getDrivers}
+              updateDriverList={this._getActiveDrivers}
               getJobs={this._getUnassignedJobs}
             />
           )}
@@ -81,16 +79,22 @@ class App extends React.Component {
 
   }
 
+  _getActiveDrivers = async () => {
+    console.log('App: _getActiveDrivers IS BEING CALLED WOO')
+    const response = await axios.get('http://localhost:5000/drivers/active')
+    console.log(response);
+    this.setState({
+      activeDrivers: response.data
+    })
+
+  }
+
   _getUnassignedJobs = async () => {
     const response = await axios.get('http://localhost:5000/jobs/unassigned');
     this.setState({
         unassignedJobs: response.data
     })
 
-  }
-
-  _getAssignedJobs = async () => {
-    const response = await axios.get('http://localhost:5000/jobs/assigned')
   }
 
 }

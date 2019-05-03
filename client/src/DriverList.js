@@ -14,7 +14,9 @@ class DriverList extends React.Component {
     }
 
     render() {
-        console.log(this.state.job);
+        console.log('THIS IS DRIVER LIST RE-RENDERING');
+        console.log(this.props.drivers);
+        console.log(this.state.drivers);
         return (
             <div>
                 <h2>Active Jobs</h2>
@@ -24,10 +26,11 @@ class DriverList extends React.Component {
                         <tr>
                             <th>Assigned Job</th>
                             <th>Driver Name</th>
+                            <th>Mark Complete</th>
                         </tr>
                         {
                             this.props.drivers 
-                            ? this.props.drivers.filter(driver => driver.assigned_job).map(d => <Driver data={d} onClick={this._getJobInfo}/>) 
+                            ? this.props.drivers.map(d => <Driver data={d} onClick={this._getJobInfo} getDrivers={this.props.onLoad}/>) 
                             : null
                         }
                     </tbody>

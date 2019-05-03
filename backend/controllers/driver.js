@@ -10,4 +10,15 @@ async function getAllDrivers(req, res) {
 
 }
 
-module.exports = getAllDrivers;
+async function getActiveDrivers(req, res) {
+
+    const activeDriversArray = await Driver.getActiveDrivers();
+
+    console.log(activeDriversArray);
+
+    res.send(activeDriversArray);
+
+
+}
+
+module.exports = {getAllDrivers, getActiveDrivers};

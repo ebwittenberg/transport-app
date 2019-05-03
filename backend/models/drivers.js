@@ -15,14 +15,27 @@ class Driver {
         `)
     }
 
+    static getActiveDrivers() {
+        return db.any(`
+        select * from drivers
+        WHERE assigned_job IS NOT NULL
+        `)
+    }
+
     static assignJobToDriver(driverID, jobID) {
         return db.result(`
         UPDATE drivers
         SET assigned_job=${jobID}
         WHERE id=${driverID} 
         `)
+    }
 
-
+    static unAssignJob(driverID) {
+        return db.result(`
+        UPDATE drivers
+        SET assigned_job=null
+        WHERE id=${driverID}
+        `)
     }
 
 }
