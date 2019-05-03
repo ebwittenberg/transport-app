@@ -30,7 +30,7 @@ class DriverList extends React.Component {
                         </tr>
                         {
                             this.props.drivers 
-                            ? this.props.drivers.map(d => <Driver data={d} onClick={this._getJobInfo} getDrivers={this.props.onLoad}/>) 
+                            ? this.props.drivers.map(d => <Driver data={d} onClick={this._getJobInfo} getDrivers={this.props.onLoad} completed={this.props.completed}/>) 
                             : null
                         }
                     </tbody>

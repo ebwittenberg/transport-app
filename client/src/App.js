@@ -7,6 +7,7 @@ import Home from './Home';
 import DriverList from './DriverList';
 import UnassignedList from './UnassignedList';
 import AssignJob from './AssignJob';
+import CompletedList from './CompletedList';
 
 class App extends React.Component {
 
@@ -15,7 +16,8 @@ class App extends React.Component {
     this.state={
       allDrivers: null,
       unassignedJobs: null,
-      activeDrivers: null
+      activeDrivers: null,
+      completedJobs: null
     }
   }
 
@@ -33,6 +35,7 @@ class App extends React.Component {
           <p><Link to="/">Home</Link></p>
           <p><Link to="/drivers">Active Jobs</Link></p>
           <p><Link to="/jobs/unassigned">Unassigned Jobs</Link></p>
+          <p><Link to="/jobs/completed">Completed Jobs</Link></p>
         </div>
   
         <Route exact path="/" component={Home} />
@@ -43,6 +46,7 @@ class App extends React.Component {
               {...props}
               onLoad={this._getActiveDrivers}
               drivers={this.state.activeDrivers}
+              completed={this._getCompletedJobs}
             />
           )}
         />
@@ -65,13 +69,21 @@ class App extends React.Component {
             />
           )}
         />
+        <Route path="/jobs/completed" 
+          render={(props) => (
+            <CompletedList 
+              {...props}
+              completed={this.state.completedJobs}
+            />
+          )}
+        />
+        
       </div>
     );
   }
 
   _getDrivers = async () => {
     // get drivers from the backend, save in state
-    console.log('App: _getDrivers got called');
     const response = await axios.get('http://localhost:5000/drivers');
     this.setState({
         drivers: response.data
@@ -82,7 +94,6 @@ class App extends React.Component {
   _getActiveDrivers = async () => {
     console.log('App: _getActiveDrivers IS BEING CALLED WOO')
     const response = await axios.get('http://localhost:5000/drivers/active')
-    console.log(response);
     this.setState({
       activeDrivers: response.data
     })
@@ -93,6 +104,16 @@ class App extends React.Component {
     const response = await axios.get('http://localhost:5000/jobs/unassigned');
     this.setState({
         unassignedJobs: response.data
+    })
+
+  }
+
+  _getCompletedJobs = async () => {
+    console.log('_getCompletedJobs in App')
+    const response = await axios.get('http://localhost:5000/jobs/completed');
+    console.log(response);
+    this.setState({
+      completedJobs: response.data
     })
 
   }

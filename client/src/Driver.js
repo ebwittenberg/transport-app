@@ -67,6 +67,7 @@ class Driver extends React.Component {
         })
 
         this.props.getDrivers();
+        this.props.completed();
 
     }
 

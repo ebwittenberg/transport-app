@@ -43,6 +43,14 @@ class Job {
         `)
     }
 
+    static getCompleted() {
+        return db.any(`
+        select * from jobs
+        WHERE completed='TRUE'
+        `)
+        .then(completedJobs => completedJobs.map(job => new Job(job.id, job.delivery_address, job.driving_distance, job.assigned)))
+    }
+
 
 }
 

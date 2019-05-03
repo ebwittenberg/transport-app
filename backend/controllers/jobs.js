@@ -37,4 +37,10 @@ async function markComplete(req, res) {
 
 }
 
-module.exports = {getUnassignedJobs, getJobById, assignJob, markComplete};
+async function getCompleted(req, res) {
+    const completedJobs = await Job.getCompleted()
+
+    res.send(completedJobs);
+}
+
+module.exports = {getUnassignedJobs, getJobById, assignJob, markComplete, getCompleted};
