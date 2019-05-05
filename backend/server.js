@@ -3,6 +3,8 @@ const app = express();
 const port = 5000;
 
 const cors = require('cors');
+const path = require("path");
+app.use(express.static(path.join(__dirname, "client/build")))
 
 const driverRouter = require('./routes/driver');
 const jobsRouter = require('./routes/jobs');
