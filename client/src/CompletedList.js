@@ -21,7 +21,7 @@ class CompletedList extends React.Component {
                         <tr>
                             <th>Job ID</th>
                             <th>Delivery Address</th>
-                            <th>Driving Distance</th>
+                            <th>Driving Distance (miles)</th>
                         </tr>
                         {
                             this.props.completed 
